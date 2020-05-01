@@ -2,16 +2,16 @@ package com.stephensipos.jkanban.controller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Welcome extends BorderPane implements ICustomComponent {
-    private Stage stage = new Stage();
+import static com.stephensipos.jkanban.utils.javafx.initializeFromFxml;
 
-    public Welcome() throws IOException {
-        this.initialize(stage, this);
+public class Welcome extends BorderPane {
+    public Welcome(Scene scene) throws IOException {
+        initializeFromFxml(this, scene);
     }
 
     public void close(ActionEvent actionEvent) {

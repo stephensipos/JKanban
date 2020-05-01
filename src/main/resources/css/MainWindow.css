@@ -1,4 +1,4 @@
-PrimaryStage {
+MainWindow {
     -fx-pref-width: 900px;
     -fx-pref-height: 500px;
 }

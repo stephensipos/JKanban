@@ -2,48 +2,70 @@ package com.stephensipos.jkanban.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
+import java.util.Optional;
 
-public class CreateBoard extends BorderPane implements ICustomComponent {
-    private Stage stage = new Stage();
+import static com.stephensipos.jkanban.utils.javafx.initializeFromFxml;
+
+public class CreateBoard extends BorderPane {
+
+    private Stage stage;
+    private Scene scene;
 
     @FXML private TextField boardName;
     @FXML private Button okButton;
 
     public CreateBoard() throws IOException {
+        stage = new Stage();
+        scene = new Scene(this);
+
         stage.initModality(Modality.APPLICATION_MODAL);
-        initialize(stage, this);
+        initializeFromFxml(this);
+
+        stage.setScene(scene);
+
+        initializeControls();
     }
 
     public void initializeControls() {
-        this.initializeOkButton();
+        initializeOkButton();
     }
 
     private void initializeOkButton() {
-        this.boardName.textProperty().addListener((obj, oldText, newText) -> {
-            this.validate(newText);
-        });
+        boardName.textProperty().addListener((obj, oldText, newText) -> validate(newText));
 
-        this.validate(this.boardName.getText());
+        this.validate(boardName.getText());
     }
 
     public void cancel(ActionEvent event) {
         stage.close();
     }
 
-    public void ok(ActionEvent event) {
-        System.out.println(this.boardName.getText());
-        System.out.println(this.getScene().getWindow().getClass());
+    public void ok(ActionEvent event) throws IOException {
+        Optional<Parent> mainWindow = Window
+                .getWindows()
+                .stream()
+                .map((s) -> s.getScene().getRoot())
+                .filter((w) -> w instanceof MainWindow)
+                .findFirst();
+
+        if (mainWindow.isPresent()) {
+            ((MainWindow) mainWindow.get()).showBoard(boardName.getText());
+            stage.close();
+        }
     }
 
     private void validate(String boardNameText) {
-        this.okButton.setDisable(boardNameText.isEmpty());
+        okButton.setDisable(boardNameText.isEmpty());
     }
 
     public void showAndWait() {

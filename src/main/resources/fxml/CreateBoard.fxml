@@ -13,8 +13,8 @@
    <bottom>
       <ButtonBar styleClass="buttons" BorderPane.alignment="CENTER">
         <buttons>
-            <Button fx:id="okButton" mnemonicParsing="false" onAction="#ok" text="OK" />
-          <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+            <Button fx:id="okButton" onAction="#ok" text="_OK" />
+            <Button onAction="#cancel" text="_Cancel" />
         </buttons>
       </ButtonBar>
    </bottom>
@@ -22,18 +22,16 @@
       <Label styleClass="title" text="Create board" BorderPane.alignment="CENTER_LEFT" />
    </top>
    <center>
-      <GridPane styleClass="center" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Board name" />
-            <TextField fx:id="boardName" GridPane.columnIndex="1" />
-         </children>
-      </GridPane>
+       <GridPane styleClass="center" BorderPane.alignment="CENTER">
+           <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+           </columnConstraints>
+           <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+           </rowConstraints>
+           <Label text="Board name"/>
+           <TextField fx:id="boardName" GridPane.columnIndex="1"/>
+       </GridPane>
    </center>
 </fx:root>
