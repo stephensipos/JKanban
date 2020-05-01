@@ -1,0 +1,17 @@
+CreateBoard {
+    -fx-padding: 5px;
+}
+
+.title {
+    -fx-pref-height: 40px;
+    -fx-font-size: 24px;
+}
+
+.center {
+    -fx-padding: 5px 0px 5px 0px;
+}
+
+.buttons {
+    -fx-pref-height: 40px;
+}
+
