@@ -13,9 +13,11 @@ public class MainWindow extends Pane {
     public Scene scene;
 
     public MainWindow() throws IOException {
+        super();
         scene = new Scene(this);
         initializeFromFxml(this);
-        showWelcome();
+        // showWelcome();
+        showBoard("Test");
     }
 
     private void setContent(Node content) {
@@ -26,10 +28,10 @@ public class MainWindow extends Pane {
     }
 
     public void showWelcome() throws IOException {
-        setContent(new Welcome(scene));
+        setContent(new WelcomePane(scene));
     }
 
     public void showBoard(String name) throws IOException {
-        setContent(new Board(name, scene));
+        setContent(new BoardPane(scene, name));
     }
 }

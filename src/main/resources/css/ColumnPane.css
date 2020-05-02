@@ -1,0 +1,19 @@
+ColumnPane {
+    -fx-border-color: gray;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+ColumnPane > * >  #header {
+    -fx-background-radius: 5px;
+    -fx-background-color: #CCCCCC;
+    -fx-pref-height: 40px;
+}
+
+ColumnPane > * > #header > #title {
+    -fx-font-size: 18px;
+}
+
+ColumnPane > * > #contents {
+    -fx-padding: 5px;
+}

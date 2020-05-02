@@ -1,0 +1,10 @@
+BoardPane > #board-name {
+    -fx-pref-height: 40px;
+    -fx-font-size: 24px;
+    -fx-padding: 5px;
+}
+
+BoardPane > #categories {
+    -fx-pref-height: 1000px;
+}
+

@@ -9,8 +9,9 @@ import java.io.IOException;
 
 import static com.stephensipos.jkanban.utils.javafx.initializeFromFxml;
 
-public class Welcome extends BorderPane {
-    public Welcome(Scene scene) throws IOException {
+public class WelcomePane extends BorderPane {
+    public WelcomePane(Scene scene) throws IOException {
+        super();
         initializeFromFxml(this, scene);
     }
 
@@ -23,7 +24,7 @@ public class Welcome extends BorderPane {
     }
 
     public void createBoard(ActionEvent actionEvent) throws IOException {
-        var createBoard = new CreateBoard();
+        var createBoard = new CreateBoardDialog();
         createBoard.showAndWait();
     }
 }

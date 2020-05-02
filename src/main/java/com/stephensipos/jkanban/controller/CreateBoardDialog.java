@@ -16,7 +16,7 @@ import java.util.Optional;
 
 import static com.stephensipos.jkanban.utils.javafx.initializeFromFxml;
 
-public class CreateBoard extends BorderPane {
+public class CreateBoardDialog extends BorderPane {
 
     private Stage stage;
     private Scene scene;
@@ -24,7 +24,8 @@ public class CreateBoard extends BorderPane {
     @FXML private TextField boardName;
     @FXML private Button okButton;
 
-    public CreateBoard() throws IOException {
+    public CreateBoardDialog() throws IOException {
+        super();
         stage = new Stage();
         scene = new Scene(this);
 
