@@ -7,13 +7,43 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<fx:root type="Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS">
-   <VBox fillWidth="true" spacing="5.0" fx:id="layout" prefWidth="${layout.parent.width}">
-      <AnchorPane fx:id="header" id="header" prefWidth="${header.parent.width}">
-         <Label fx:id="title" id="title" AnchorPane.topAnchor="5.0" AnchorPane.leftAnchor="5.0"/>
-         <Button text="+" AnchorPane.topAnchor="5.0" AnchorPane.rightAnchor="5.0"/>
+<?import javafx.scene.control.ScrollPane?>
+<fx:root type="Pane"
+         xmlns="http://javafx.com/javafx/11.0.1"
+         xmlns:fx="http://javafx.com/fxml/1"
+         HBox.hgrow="ALWAYS"
+         onDragOver="#handleDragOver"
+         onDragDropped="#handleDragDropped"
+         style="-fx-border-color: gray; -fx-border-width: 1px; -fx-border-radius: 5px;">
+   <VBox fx:id="layout"
+         fillWidth="true"
+         prefWidth="${layout.parent.width}"
+         maxHeight="${layout.parent.height}">
+      <AnchorPane style="-fx-background-radius: 5px; -fx-background-color: #CCCCCC;" >
+         <Label fx:id="title"
+                id="title"
+                style="-fx-font-size: 18px;"
+                AnchorPane.leftAnchor="5.0"
+                AnchorPane.topAnchor="5.0"
+                AnchorPane.rightAnchor="45.0"
+                AnchorPane.bottomAnchor="5.0"
+                textOverrun="ELLIPSIS" />
+         <Button text="+"
+                 onAction="#createCard"
+                 AnchorPane.topAnchor="5.0"
+                 AnchorPane.rightAnchor="5.0"
+                 AnchorPane.bottomAnchor="5.0"/>
       </AnchorPane>
-      <VBox fx:id="contents" id="contents" fillWidth="true"/>
-      <Pane VBox.vgrow="ALWAYS" />
+      <AnchorPane>
+         <ScrollPane fitToWidth="true"
+                     fitToHeight="true"
+                     AnchorPane.topAnchor="1.0"
+                     AnchorPane.rightAnchor="1.0"
+                     AnchorPane.bottomAnchor="1.0"
+                     AnchorPane.leftAnchor="1.0"
+                     style="-fx-background-color:transparent;">
+            <VBox fx:id="contents" id="contents" spacing="5.0" />
+         </ScrollPane>
+      </AnchorPane>
    </VBox>
 </fx:root>

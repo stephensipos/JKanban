@@ -1,5 +1,7 @@
 package com.stephensipos.jkanban.controller;
 
+import com.stephensipos.jkanban.model.dao.BoardDao;
+import com.stephensipos.jkanban.model.entities.Board;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -35,6 +37,7 @@ public class CreateBoardDialog extends BorderPane {
         stage.setScene(scene);
 
         initializeControls();
+        boardName.requestFocus();
     }
 
     public void initializeControls() {
@@ -52,6 +55,9 @@ public class CreateBoardDialog extends BorderPane {
     }
 
     public void ok(ActionEvent event) throws IOException {
+        var board = new Board(boardName.getText());
+        BoardDao.save(board);
+
         Optional<Parent> mainWindow = Window
                 .getWindows()
                 .stream()
@@ -60,7 +66,7 @@ public class CreateBoardDialog extends BorderPane {
                 .findFirst();
 
         if (mainWindow.isPresent()) {
-            ((MainWindow) mainWindow.get()).showBoard(boardName.getText());
+            ((MainWindow) mainWindow.get()).showBoard(board);
             stage.close();
         }
     }

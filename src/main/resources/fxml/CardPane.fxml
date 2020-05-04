@@ -11,24 +11,53 @@
 <?import javafx.scene.control.Menu?>
 
 <?import javafx.scene.control.Separator?>
-<fx:root type="Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox fillWidth="true" fx:id="layout" prefWidth="${layout.parent.width}">
-       <AnchorPane fx:id="header" id="header" prefWidth="${header.parent.width}">
-           <Label fx:id="title" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0"/>
-           <MenuButton AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+<fx:root type="Pane"
+         xmlns="http://javafx.com/javafx/11.0.1"
+         xmlns:fx="http://javafx.com/fxml/1"
+         onDragDetected="#handleDragDetection"
+         onDragDone="#handleDragDone"
+         onDragOver="#handleDragOver"
+         onDragDropped="#handleDragDropped"
+         onDragEntered="#handleDragEntered"
+         onDragExited="#handleDragExited"
+         style="-fx-border-width: 1px;  -fx-border-radius: 5px; -fx-background-radius: 5px;"
+         minHeight="100"
+         prefHeight="200"
+         maxHeight="200">
+    <VBox fillWidth="true"
+          fx:id="layout"
+          prefWidth="${layout.parent.width}"
+          maxWidth="${layout.parent.width}"
+          prefHeight="200"
+          maxHeight="${layout.parent.height}">
+       <Separator fx:id="dragBeforeMark" translateY="-10" visible="false" />
+       <AnchorPane fx:id="header" id="header" maxWidth="${layout.width}">
+           <Label fx:id="title"
+                  AnchorPane.leftAnchor="5.0"
+                  AnchorPane.rightAnchor="45.0"
+                  AnchorPane.topAnchor="5.0"
+                  style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+           <MenuButton AnchorPane.rightAnchor="5.0"
+                       AnchorPane.topAnchor="5.0"
+                        maxWidth="40">
                <items>
-                   <MenuItem mnemonicParsing="false" text="Edit" />
-                   <MenuItem mnemonicParsing="false" text="Delete" />
+                   <MenuItem onAction="#edit" mnemonicParsing="false" text="Edit" />
+                   <MenuItem onAction="#delete" mnemonicParsing="false" text="Delete" />
                    <SeparatorMenuItem />
-                   <Menu mnemonicParsing="false" text="Change category">
-                       <MenuItem mnemonicParsing="false" onAction="#setCategory"  text="School" />
-                       <MenuItem mnemonicParsing="false" onAction="#setCategory"  text="Work" />
-                       <MenuItem mnemonicParsing="false" onAction="#setCategory"  text="Family" />
-                   </Menu>
+                   <Menu fx:id="changeCategoryMenu" mnemonicParsing="false" text="Change category" />
                </items>
            </MenuButton>
         </AnchorPane>
-        <Separator />
-        <Label fx:id="description" id="description" />
+        <!-- <Separator /> -->
+        <AnchorPane>
+            <Label fx:id="description"
+                   id="description"
+                   AnchorPane.leftAnchor="5.0"
+                   AnchorPane.bottomAnchor="5.0"
+                   AnchorPane.rightAnchor="5.0"
+                   AnchorPane.topAnchor="5.0"
+                   textOverrun="WORD_ELLIPSIS"
+                   wrapText="true"/>
+        </AnchorPane>
    </VBox>
 </fx:root>

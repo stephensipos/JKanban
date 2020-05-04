@@ -3,16 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.stephensipos</groupId>
     <artifactId>JKanban</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>14</maven.compiler.release>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -30,8 +27,22 @@
             <artifactId>javafx-fxml</artifactId>
             <version>14</version>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.15.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.20</version>
+        </dependency>
     </dependencies>
-
     <build>
         <pluginManagement>
             <plugins>
@@ -83,6 +94,5 @@
                 </configuration>
             </plugin>
         </plugins>
-
     </build>
 </project>

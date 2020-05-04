@@ -1,9 +1,7 @@
-CardPane {
-    -fx-border-width: 1px;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-min-width: 200px;
-    -fx-max-height: 200px;
+
+CardPane.category- {
+    -fx-border-color: gray;
+    -fx-background-color: #AAAAAA;
 }
 
 CardPane.category-work {
@@ -19,18 +17,4 @@ CardPane.category-school {
 CardPane.category-family {
     -fx-border-color: red;
     -fx-background-color: #FFAAAA;
-}
-
-CardPane > * > #header {
-    -fx-pref-height: 40px;
-}
-
-CardPane > * > #header > #title {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-}
-
-CardPane > * > #description {
-    -fx-text-overrun: ellipsis;
-    -fx-padding: 5px;
 }

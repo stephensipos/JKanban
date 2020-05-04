@@ -1,41 +1,69 @@
 package com.stephensipos.jkanban.controller;
 
+import com.stephensipos.jkanban.model.dao.BoardDao;
+import com.stephensipos.jkanban.model.entities.Board;
+import com.stephensipos.jkanban.utils.Columns;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import static com.stephensipos.jkanban.utils.javafx.initializeFromFxml;
 
 public class BoardPane extends VBox {
+    private Board board;
+    private Scene scene;
+
     @FXML private Label boardName;
-    @FXML private HBox categories;
+    @FXML private HBox columns;
+    @FXML private Menu boardsMenu;
 
-    public BoardPane(Scene scene, String name) throws IOException {
+    public Board getBoard() {
+        return board;
+    }
+
+    public BoardPane(Scene scene, Board board) throws IOException {
         super();
+        this.board = board;
+        this.scene = scene;
+
         initializeFromFxml(this, scene);
-        this.boardName.setText(name);
 
-        var todo = new ColumnPane(scene, "To-do");
+        this.boardName.setText(board.getTitle());
 
-        todo.addCard(new CardPane(scene, "Shopping", "Lorem ipsum dolor sit amet,\n\nconsectetur adipiscing elit.\nInteger nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor."));
+        Arrays.stream(Columns.getSupportedColumns()).forEach(column -> {
+            try {
+                columns.getChildren().add(new ColumnPane(scene, board, column));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
-        categories.getChildren().addAll(
-                todo,
-                new ColumnPane(scene, "Do today"),
-                new ColumnPane(scene, "In progress"),
-                new ColumnPane(scene, "Done")
-        );
+        initializeBoardsMenu();
+    }
 
-        categories.getChildren().stream().forEach(node -> {
-            ((Region) node).prefHeightProperty().bind(categories.heightProperty());
+    private void initializeBoardsMenu() {
+        BoardDao.findAll().forEach(board -> {
+            MenuItem menuItem = new MenuItem(board.getTitle());
+            menuItem.setUserData(board);
+            menuItem.setOnAction(event -> {
+                try {
+                    openBoard(event);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            boardsMenu.getItems().add(menuItem);
         });
     }
 
@@ -47,12 +75,21 @@ public class BoardPane extends VBox {
     public void about(ActionEvent actionEvent) {
     }
 
-    public void createBoard(ActionEvent actionEvent) throws IOException {
+    public void create(ActionEvent actionEvent) throws IOException {
         var createBoard = new CreateBoardDialog();
         createBoard.showAndWait();
     }
 
+    public void delete(ActionEvent actionEvent) throws IOException {
+        BoardDao.delete(board);
+        MainWindow mainWindow = (MainWindow) scene.getRoot();
+        mainWindow.initializeContent();
+    }
+
     public void openBoard(ActionEvent actionEvent) throws IOException {
-        ((MainWindow) this.getScene().getRoot()).showBoard(((MenuItem)actionEvent.getSource()).getText());
+        MenuItem source = (MenuItem) actionEvent.getSource();
+        Board board = (Board) source.getUserData();
+        MainWindow mainWindow = (MainWindow) scene.getRoot();
+        mainWindow.showBoard(board);
     }
 }

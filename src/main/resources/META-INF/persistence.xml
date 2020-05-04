@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
+    <persistence-unit name="jkanban">
+        <class>com.stephensipos.jkanban.model.entities.Board</class>
+        <class>com.stephensipos.jkanban.model.entities.Card</class>
+        <class>com.stephensipos.jkanban.model.entities.CardBoardRelation</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:testdb"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="jkanban-mariadb">
+        <class>com.stephensipos.jkanban.model.entities.Board</class>
+        <class>com.stephensipos.jkanban.model.entities.Card</class>
+        <class>com.stephensipos.jkanban.model.entities.CardBoardRelation</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/sistvan"/>
+            <property name="javax.persistence.jdbc.user" value="sistvan"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
+        </properties>
+    </persistence-unit>
+</persistence>
