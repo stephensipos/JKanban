@@ -20,7 +20,7 @@
         <class>com.stephensipos.jkanban.model.entities.CardBoardRelation</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/sistvan"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/jkanban"/>
             <property name="javax.persistence.jdbc.user" value="sistvan"/>
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
