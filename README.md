@@ -7,6 +7,7 @@ To try:
 ```bash
 git clone https://github.com/stephensipos/JKanban.git
 cd JKanban
+mvn compile
 mvn exec:java
 ```
 By default, it uses an in-memory H2 database. To switch to a persistent backend
