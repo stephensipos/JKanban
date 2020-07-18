@@ -2,7 +2,7 @@
 
 Minimal Kanban board application using JavaFX.
 
-To try:
+Try with:
 
 ```bash
 git clone https://github.com/stephensipos/JKanban.git
